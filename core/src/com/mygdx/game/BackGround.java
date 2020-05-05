@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
@@ -19,7 +20,7 @@ public class BackGround {
         date = new byte[CELLS_X][CELLS_Y];
         create();
 
-        textureGrass = new Texture("fon2.jpg");
+        textureGrass = new Texture("zone.jpg");
         wallTextures = new ArrayList<>();
         wallTextures.add(new Texture("wall.png"));
         wallTextures.add(new Texture("fon.png"));
@@ -58,4 +59,6 @@ public class BackGround {
     public byte[][] getDate() {
         return date;
     }
+
+
 }

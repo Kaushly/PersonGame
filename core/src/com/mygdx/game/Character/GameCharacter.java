@@ -19,6 +19,8 @@ public abstract class GameCharacter {
     float damageEffectTimer;
     float attackTimer;
     Weapon weapon;
+    float size_height = 80.0f;
+    float size_width = 80.0f;
 
 
     public Vector2 getPosition() {
@@ -29,14 +31,13 @@ public abstract class GameCharacter {
         if (damageEffectTimer > 0) {
             batch.setColor(1, 1 - damageEffectTimer, 1 - damageEffectTimer, 1);
         }
-        batch.draw(texture, position.x - 40, position.y - 40);
+        batch.draw(texture, position.x - size_width / 2, position.y - size_height / 2);
         batch.setColor(1, 1, 1, 1);
         batch.setColor(0, 0, 0, 1);
-        batch.draw(textureHp, position.x - 42, position.y - 40 + 78, 84, 16);
+        batch.draw(textureHp, position.x - size_width / 2  - 2, position.y - size_height / 2 + size_height - 2, 84, 16);
         batch.setColor(1, 0, 0, 1);
-        batch.draw(textureHp, position.x - 40, position.y - 40 + 80, 0, 0, hp / maxHp * 80, 12, 1, 1, 0, 0, 0, 80, 12, false, false);
+        batch.draw(textureHp, position.x - size_width / 2, position.y - size_height / 2 + size_height, 0, 0, hp / maxHp * 80, 12, 1, 1, 0, 0, 0, 80, 12, false, false);
         batch.setColor(1, 1, 1, 1);
-
     }
 
     public abstract void update(float dt);
