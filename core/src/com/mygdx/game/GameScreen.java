@@ -50,12 +50,19 @@ public class GameScreen {
 
     public void update(float dt) {
         hero.update(dt);
-        enemies.removeAll(enemies.stream()
-                .filter(p1 -> !p1.isAlive())
-                .collect(Collectors.toList())
-        );
-        enemies.forEach(enemy -> enemy.update(dt));
-
+        for (Enemy enemy : enemies) {
+            enemy.update(dt);
+        }
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemy currentEnemy = enemies.get(i);
+            if(!currentEnemy.isAlive()){
+                enemies.remove(currentEnemy);
+            }
+        }
+        if(!hero.isAlive()){
+            hero.setHp(hero.getMaxHp());
+            enemies.add(new Enemy(this));
+        }
     }
 
     public Hero getHero() {

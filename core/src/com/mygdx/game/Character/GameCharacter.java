@@ -42,18 +42,23 @@ public abstract class GameCharacter {
 
     public abstract void update(float dt);
 
-    public void checkScreenUp() {
-        if (position.x > Gdx.graphics.getWidth()) {
-            position.x = Gdx.graphics.getWidth();
+    public void checkScreenUp(float dt) {
+        temp.set(position).mulAdd(direction, speed* dt);
+        if(gameScreen.getBackGround().isCellPassable(temp)){
+            position.set(temp);
         }
-        if (position.x < 0.0f) {
-            position.x = 0.0f;
+
+        if (position.x > Gdx.graphics.getWidth() - size_width / 2) {
+            position.x = Gdx.graphics.getWidth() - size_width / 2;
         }
-        if (position.y > Gdx.graphics.getHeight()) {
-            position.y = Gdx.graphics.getHeight();
+        if (position.x < 0.0f + size_width / 2) {
+            position.x = 0.0f + size_width / 2;
         }
-        if (position.y < 0.0f) {
-            position.y = 0.0f;
+        if (position.y > Gdx.graphics.getHeight() - size_height / 2) {
+            position.y = Gdx.graphics.getHeight() - size_height / 2;
+        }
+        if (position.y < 0.0f + size_height / 2) {
+            position.y = 0.0f + size_height / 2;
         }
     }
 
@@ -67,5 +72,13 @@ public abstract class GameCharacter {
 
     public boolean isAlive() {
         return hp > 0;
+    }
+
+    public float getMaxHp() {
+        return maxHp;
+    }
+
+    public void setHp(float hp) {
+        this.hp = hp;
     }
 }
